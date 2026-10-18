@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Cite a specific released version and commit when using this research software."
+title: "Agents With Keys: CI Agent Configuration Research Software"
+type: software
+authors:
+  - family-names: Keluo-Udeke
+    given-names: Osita Sean
+version: 0.1.0
+license: MIT

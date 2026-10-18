@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agents-with-keys"
+version = "0.1.0"
+description = "Reproducible configuration measurement for AI agents in GitHub Actions"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["PyYAML==6.0.3"]
+authors = [{name = "Osita Sean Keluo-Udeke"}]
+
+[project.scripts]
+awkeys = "awkeys.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+awkeys = ["catalog.json"]
