@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "operation": "add_labels",
+  "repository": "research-owner/sandbox",
+  "issue": 1,
+  "run_id": "fixture-run",
+  "source_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "labels": ["needs-triage"]
+}
