@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-18",
+  "scope": "Seed catalog, not an exhaustive inventory of agent products",
+  "actions": [
+    {"id": "claude-code", "uses": "anthropics/claude-code-action", "source": "https://github.com/anthropics/claude-code-action"},
+    {"id": "gemini-cli", "uses": "google-github-actions/run-gemini-cli", "source": "https://github.com/google-github-actions/run-gemini-cli"},
+    {"id": "codex", "uses": "openai/codex-action", "source": "https://github.com/openai/codex-action"},
+    {"id": "qodo-pr-agent", "uses": "qodo-ai/pr-agent", "source": "https://github.com/qodo-ai/pr-agent"},
+    {"id": "qodo-pr-agent", "uses": "codium-ai/pr-agent", "source": "https://github.com/qodo-ai/pr-agent"}
+  ],
+  "cli_patterns": [
+    {"id": "claude-code-cli", "pattern": "(?:^|[;&|\\n])\\s*(?:[A-Z_][A-Z0-9_]*=\\S+\\s+)*claude\\s+(?:-p|--print)\\b"},
+    {"id": "gemini-cli-direct", "pattern": "(?:^|[;&|\\n])\\s*gemini\\s+(?:-p|--prompt)\\b"},
+    {"id": "codex-cli", "pattern": "(?:^|[;&|\\n])\\s*codex\\s+(?:exec|review)\\b"},
+    {"id": "aider-cli", "pattern": "(?:^|[;&|\\n])\\s*aider\\s+[^\\n]*(?:--message|--message-file)\\b"},
+    {"id": "opencode-cli", "pattern": "(?:^|[;&|\\n])\\s*opencode\\s+run\\b"}
+  ],
+  "exclusions": [
+    "Bot-authored comments without an observable workflow invocation",
+    "Product names appearing only in comments, step names or installation commands",
+    "Copilot setup workflows without an observable agent invocation",
+    "Unresolved local actions and reusable workflows: retained as analysis limitations"
+  ]
+}
