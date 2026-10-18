@@ -1,0 +1,17 @@
+# Inert teaching fixture. This file is outside .github/workflows and must not be
+# deployed. References are synthetic; this is not a real project or study result.
+name: Configuration exposure fixture
+on:
+  issues:
+    types: [opened]
+permissions:
+  contents: write
+  issues: write
+jobs:
+  agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: openai/codex-action@v1
+        with:
+          prompt: ${{ github.event.issue.body }}
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
