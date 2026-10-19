@@ -1,0 +1,10 @@
+{
+  "title": "Agents With Keys: CI Authority Measurement and Bounded Proposal Validation",
+  "upload_type": "software",
+  "version": "0.1.0",
+  "creators": [{"name": "Keluo-Udeke, Osita Sean"}],
+  "description": "Research software for read-only workflow configuration measurement, documented public-repository snapshots, aggregate reporting, closed-schema proposal validation, and recorded-trial evidence checks. Version 0.1.0 is a research prototype, not a complete credential broker, live-agent defense, or independently evaluated security product. Only aggregate study evidence is released; source snapshots and identity mappings are controlled separately.",
+  "license": "MIT",
+  "keywords": ["continuous integration", "agent security", "least privilege", "measurement", "reproducibility"],
+  "related_identifiers": [{"identifier": "https://github.com/seanudeke/agents.keys", "relation": "isSupplementTo", "scheme": "url"}]
+}

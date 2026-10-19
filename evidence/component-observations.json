@@ -1,0 +1,173 @@
+{
+  "record_kind": "deterministic_component_observations",
+  "empirical_agent_evaluation": false,
+  "created_at": "2026-10-19T16:56:01.443598+00:00",
+  "python": "3.12.14",
+  "pyyaml": "6.0.3",
+  "working_tree_modified": true,
+  "tested_source_sha256": {
+    "src/awkeys/__init__.py": "735fa2c461294be2401c2bab1937b88d8824d419edf2f45d3ec7218f70d4bf89",
+    "src/awkeys/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/awkeys/broker.py": "d7cc718bc7de09d957ae57b68c02509a5c68caa5d5331d9ad1d5e29234a8e4cb",
+    "src/awkeys/cache.py": "dd2aea9c978c3026f30015d379766fc915b46dcaa96cdf43024fe213e2be2fef",
+    "src/awkeys/catalog.json": "dd07553391940bae9f6d63fbaba5f93801fedff380f261383a9b71cacf0b248f",
+    "src/awkeys/cli.py": "61ff3c648743b2ad49d4cd5bbbed36ef339ec9f315fa94f746a4e3563187cb87",
+    "src/awkeys/evaluation.py": "e72b649cc6049f345d64b8682e35ad568dc78878b605de1a5b22e938dd6a513e",
+    "src/awkeys/github.py": "4b60eef101c7eb1864adb52412dc13b9edd211ea4c33d1e8aa79ac07ac64ae25",
+    "src/awkeys/io.py": "52ea5e116fbbc4a05ce41591fb456bf068cec6ebaa389c0f90e107c5e2bc7025",
+    "src/awkeys/mining.py": "4767e6a4aeb36be0d428b562855a648537617a8d2a8e08572619cc74f48152d3",
+    "src/awkeys/reporting.py": "88c53f8352186bd570e06b81c2b2567bf3c09c0f325f3bff6b377b726aa970c6",
+    "src/awkeys/scanner.py": "4fc200dc29f42f1ac687e43a556b0be1382fa5a2ca95c74122b7b0483d327632",
+    "tests/test_broker_evaluation.py": "98b52bef32f8edc7efe71678e36905ae2da5dcc69289ea59ab01c47173f23408",
+    "tests/test_cli.py": "2a8945253b7a96d443fdfac30e9bed6774be053976b40a0bd75902c66f66585e",
+    "tests/test_collection_reporting.py": "f07fe43c6905e95e19372b3b90b187ebbed16f4018f3d3feddb8e7f791e843b2",
+    "tests/test_http_client.py": "3add4d285bb5c69c8773c0d3d110751133dccc26722e83dd18f18e60a8e50aa4",
+    "tests/test_recorded_collection.py": "ad49feca2fbffc0c41f3edcec0ac388c5b91a8912909660018c6faf061c2b101",
+    "tests/test_scanner.py": "3b8ef943b912e9d3ee02c51f8e149e97001043131011c06de72d5b76062aa7c7"
+  },
+  "source_version_basis": "tested_source_sha256, including uncommitted changes at execution time",
+  "tested_inventory_sha256": "b41bdd15fee72b286fcfa23f837461a350a155c29611851a0cb0029f7345b1f9",
+  "tested_file_count": 18,
+  "unit_test_inventory": {
+    "test_broker_evaluation": 21,
+    "test_cli": 4,
+    "test_collection_reporting": 22,
+    "test_http_client": 5,
+    "test_recorded_collection": 9,
+    "test_scanner": 29
+  },
+  "unit_test_count": 90,
+  "boundary_fixture_checks": {
+    "schema_version": 1,
+    "record_kind": "deterministic_boundary_fixture_check",
+    "empirical_agent_evaluation": false,
+    "interpretation": "Checks this validator's closed schema only; does not measure prompt-injection resistance or task utility.",
+    "checks": [
+      {
+        "case_id": "authorized_label",
+        "expected_acceptance": true,
+        "observed_acceptance": true,
+        "check_passed": true
+      },
+      {
+        "case_id": "repository_confusion",
+        "expected_acceptance": false,
+        "observed_acceptance": false,
+        "check_passed": true
+      },
+      {
+        "case_id": "issue_confusion",
+        "expected_acceptance": false,
+        "observed_acceptance": false,
+        "check_passed": true
+      },
+      {
+        "case_id": "run_confusion",
+        "expected_acceptance": false,
+        "observed_acceptance": false,
+        "check_passed": true
+      },
+      {
+        "case_id": "source_confusion",
+        "expected_acceptance": false,
+        "observed_acceptance": false,
+        "check_passed": true
+      },
+      {
+        "case_id": "unauthorized_operation",
+        "expected_acceptance": false,
+        "observed_acceptance": false,
+        "check_passed": true
+      },
+      {
+        "case_id": "shell_field",
+        "expected_acceptance": false,
+        "observed_acceptance": false,
+        "check_passed": true
+      },
+      {
+        "case_id": "arbitrary_content",
+        "expected_acceptance": false,
+        "observed_acceptance": false,
+        "check_passed": true
+      },
+      {
+        "case_id": "oversized_label_list",
+        "expected_acceptance": false,
+        "observed_acceptance": false,
+        "check_passed": true
+      },
+      {
+        "case_id": "boolean_issue",
+        "expected_acceptance": false,
+        "observed_acceptance": false,
+        "check_passed": true
+      }
+    ]
+  },
+  "worked_example": {
+    "before_accepted": false,
+    "rejection_reason": "label is outside policy",
+    "after_accepted": true,
+    "execution_authorized": false
+  },
+  "replay_probe": {
+    "calls": 2,
+    "both_accepted": true,
+    "receipts_equal": true,
+    "interpretation": "The stateless validator does not consume a nonce or prevent replay."
+  },
+  "semantic_probe": {
+    "task_oracle_labels": [
+      "needs-triage"
+    ],
+    "proposed_labels": [
+      "documentation"
+    ],
+    "schema_accepted": true,
+    "task_oracle_satisfied": false,
+    "interpretation": "A label can be within the capability policy while wrong for the task."
+  },
+  "accepted_label_sets": [
+    [
+      "needs-triage"
+    ],
+    [
+      "documentation"
+    ],
+    [
+      "documentation",
+      "needs-triage"
+    ]
+  ],
+  "scanner_illustrations": [
+    {
+      "case": "declared_write_and_model_key",
+      "workflow_sha256": "b6f0fefbc069c845ffb9b3db48f57b087182f73d96caa9e4cffcaa9aa5038a9e",
+      "a_input_indicator": "present",
+      "b_sensitive_indicator": "present",
+      "c_declared_repository_write": "present",
+      "triple_indicator_candidate": true,
+      "egress_enforcement": "unknown"
+    },
+    {
+      "case": "declared_read_and_model_key",
+      "workflow_sha256": "78a20419be757efe4500f76c51cfbce7551b5bb1da658869207618e9b8c5af9a",
+      "a_input_indicator": "present",
+      "b_sensitive_indicator": "present",
+      "c_declared_repository_write": "absent",
+      "triple_indicator_candidate": false,
+      "egress_enforcement": "unknown"
+    },
+    {
+      "case": "declared_read_no_visible_key",
+      "workflow_sha256": "83043127f72763e5ce0d3bd274fd9aa0411ea702d6ee43a83c322cb437ef51a2",
+      "a_input_indicator": "present",
+      "b_sensitive_indicator": "unknown",
+      "c_declared_repository_write": "absent",
+      "triple_indicator_candidate": false,
+      "egress_enforcement": "unknown"
+    }
+  ],
+  "interpretation": "Constructed inputs and regression checks are not deployment prevalence, model attack trials, or independent security review."
+}

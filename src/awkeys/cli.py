@@ -11,6 +11,7 @@ from . import __version__
 from .broker import Context, Rejected, boundary_checks, validate_proposal
 from .evaluation import TrialError, summarize_trials
 from .github import GitHubClient, GitHubError
+from .cache import RecordedGitHubClient
 from .io import read_jsonl, write_json, write_jsonl
 from .mining import collect
 from .reporting import reviewer_agreement, summarize, validation_sample, write_review_csv
@@ -68,12 +69,14 @@ def parser() -> argparse.ArgumentParser:
     scan.add_argument("--output", type=Path, required=True)
     scan.add_argument("--repository-id", default="local-study-repository")
     scan.add_argument("--catalog", type=Path)
-    mine = sub.add_parser("mine", help="collect public default-branch snapshots through authenticated read-only requests")
+    mine = sub.add_parser("mine", aliases=["collect"], help="collect public default-branch snapshots through authenticated read-only requests")
     mine.add_argument("--output", type=Path, required=True)
     mine.add_argument("--repositories", type=Path, help="optional newline-separated owner/repo list")
     mine.add_argument("--catalog", type=Path)
     mine.add_argument("--max-repositories", type=int, default=100)
     mine.add_argument("--max-requests", type=int, default=300)
+    mine.add_argument("--search-pages-per-query", type=int, help="bounded best-match pages (1-10); omitted uses size partitioning")
+    mine.add_argument("--response-cache", type=Path, help="replay privately retained, integrity-checked API responses without network access")
     report = sub.add_parser("summarize", help="export aggregate configuration counts without repository identifiers")
     report.add_argument("observations", type=Path)
     report.add_argument("--manifest", type=Path)
@@ -110,15 +113,17 @@ def main(argv: list[str] | None = None) -> int:
             status = local_scan(args.repository, args.output, args.repository_id, load_catalog(args.catalog))
             print(json.dumps(status, sort_keys=True))
             return 2 if status["errors"] else 0
-        if args.command == "mine":
+        if args.command in ("mine", "collect"):
             token = os.environ.get("AWKEYS_GITHUB_TOKEN") or os.environ.get("GITHUB_TOKEN", "")
-            client = GitHubClient(token, max_requests=args.max_requests)
+            client = (RecordedGitHubClient(args.response_cache, max_requests=args.max_requests)
+                      if args.response_cache else GitHubClient(token, max_requests=args.max_requests))
             names = None
             if args.repositories:
                 names = [line.strip() for line in args.repositories.read_text().splitlines()
                          if line.strip() and not line.lstrip().startswith("#")]
             manifest = collect(client, output=args.output, catalog=load_catalog(args.catalog),
-                               repositories=names, max_repositories=args.max_repositories)
+                               repositories=names, max_repositories=args.max_repositories,
+                               search_pages_per_query=args.search_pages_per_query)
             print(json.dumps({"observations": manifest["observation_count"],
                               "snapshot_analysis_complete": manifest["snapshot_analysis_complete"],
                               "index_population_exhaustive": False}))

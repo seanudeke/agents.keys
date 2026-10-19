@@ -11,7 +11,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 from . import __version__
-from .github import GitHubError, search_partitioned
+from .github import GitHubError, search_bounded, search_partitioned
 from .io import now, sha256, write_json, write_jsonl
 from .scanner import MAX_BYTES, WorkflowError, engine_markers, scan_workflow
 
@@ -24,7 +24,10 @@ def repository_id(name: str, salt: bytes) -> str:
 
 def search_queries(catalog: dict) -> list[str]:
     # Search membership is an index sample, not a random sample or a global census.
-    return sorted({f'"{x["uses"]}" path:.github/workflows is:public' for x in catalog["actions"]})
+    # REST code search uses legacy syntax. is:public belongs to the newer
+    # web search and produced false empty results in the live calibration.
+    # Public eligibility is checked on search hits AND repository metadata.
+    return sorted({f'"{x["uses"]}" path:.github/workflows' for x in catalog["actions"]})
 
 
 def _decode_blob(blob: dict) -> bytes:
@@ -40,7 +43,7 @@ def _decode_blob(blob: dict) -> bytes:
 
 
 def collect(client, *, output: Path, catalog: dict, repositories: list[str] | None = None,
-            max_repositories: int = 100) -> dict:
+            max_repositories: int = 100, search_pages_per_query: int | None = None) -> dict:
     if max_repositories < 1:
         raise ValueError("max_repositories must be positive")
     if output.exists() and any(output.iterdir()):
@@ -57,6 +60,7 @@ def collect(client, *, output: Path, catalog: dict, repositories: list[str] | No
         "finished_at": None, "collection_mode": "explicit_repository_list" if repositories else "action_catalog_search",
         "catalog_sha256": sha256(json.dumps(catalog, sort_keys=True).encode()),
         "max_repositories": max_repositories,
+        "search_pages_per_query": search_pages_per_query,
         "search_leaves": [], "repositories": [], "errors": [],
         "search_returned_pages_complete": False, "index_population_exhaustive": False,
         "snapshot_analysis_complete": False,
@@ -68,7 +72,8 @@ def collect(client, *, output: Path, catalog: dict, repositories: list[str] | No
     try:
         if repositories is None:
             for query in search_queries(catalog):
-                hits, leaves = search_partitioned(client, query)
+                hits, leaves = (search_partitioned(client, query) if search_pages_per_query is None
+                                else search_bounded(client, query, max_pages=search_pages_per_query))
                 manifest["search_leaves"].extend(leaves)
                 names.extend(x["repository"]["full_name"] for x in hits)
             names = sorted(set(names))
@@ -100,7 +105,8 @@ def collect(client, *, output: Path, catalog: dict, repositories: list[str] | No
                 tree_complete = not bool(tree.get("truncated"))
                 item.update(commit=commit, default_branch=branch, stars=meta.get("stargazers_count"),
                             topics=meta.get("topics", []), engines=engines,
-                            engine_tree_complete=tree_complete, workflow_count=0, agent_job_count=0)
+                            engine_tree_complete=tree_complete, workflow_count=0, agent_job_count=0,
+                            workflows_enumerated=len([p for p in paths if re.fullmatch(r"\.github/workflows/[^/]+\.ya?ml", p)]))
                 workflows = [x for x in tree.get("tree", [])
                              if x.get("type") == "blob" and re.fullmatch(r"\.github/workflows/[^/]+\.ya?ml", x.get("path", ""))]
                 repo_errors = False
@@ -109,8 +115,16 @@ def collect(client, *, output: Path, catalog: dict, repositories: list[str] | No
                         manifest["errors"].append({"repository_id": rid, "stage": "workflow_size"})
                         repo_errors = True
                         continue
-                    blob = client.get(f"/repos/{name}/git/blobs/{entry['sha']}")
-                    raw = _decode_blob(blob)
+                    try:
+                        blob = client.get(f"/repos/{name}/git/blobs/{entry['sha']}")
+                        raw = _decode_blob(blob)
+                    except GitHubError:
+                        manifest["errors"].append({"repository_id": rid, "stage": "workflow_fetch",
+                                                   "blob_sha": entry['sha']})
+                        repo_errors = True
+                        if client.requests >= client.max_requests:
+                            raise
+                        continue
                     digest = sha256(raw)
                     raw_path = output / "raw" / rid / f"{digest}.yml"
                     raw_path.parent.mkdir(parents=True, exist_ok=True)
@@ -148,6 +162,10 @@ def collect(client, *, output: Path, catalog: dict, repositories: list[str] | No
         manifest["snapshot_analysis_complete"] = (
             manifest["search_returned_pages_complete"]
             and all(x["status"] in ("analyzed", "excluded") for x in manifest["repositories"])
+            and not manifest["errors"])
+        manifest["selected_snapshots_complete"] = (
+            bool(manifest["repositories"]) and
+            all(x["status"] in ("analyzed", "excluded") for x in manifest["repositories"])
             and not manifest["errors"])
         manifest["observation_count"] = len(records)
         write_jsonl(output / "observations.jsonl", records)

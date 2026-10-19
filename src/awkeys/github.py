@@ -93,6 +93,34 @@ class GitHubClient:
         raise GitHubError("request retry limit exceeded")
 
 
+def search_bounded(client, query: str, *, max_pages: int = 1):
+    """Prespecified best-match pages, with explicit truncation, not a census."""
+    if type(max_pages) is not int or not 1 <= max_pages <= 10:
+        raise ValueError("search pages must be between 1 and 10")
+    hits, ledger = {}, []
+    total, incomplete, fetched = None, False, 0
+    for page in range(1, max_pages + 1):
+        response = client.get("/search/code", {"q": query, "per_page": 100, "page": page})
+        count, items = response.get("total_count"), response.get("items")
+        if type(count) is not int or count < 0 or not isinstance(items, list):
+            raise GitHubError("invalid code-search response")
+        total = count if total is None else total
+        incomplete |= bool(response.get("incomplete_results", False))
+        fetched += len(items)
+        for item in items:
+            repo = item.get("repository", {})
+            key = (repo.get("full_name"), item.get("path"), item.get("sha"))
+            if repo.get("private") is False and all(isinstance(x, str) for x in key):
+                hits[key] = item
+        if not items or fetched >= total:
+            break
+    ledger.append({"query": query, "reported_total": total, "fetched": fetched,
+                   "api_incomplete": incomplete, "capped": fetched < total,
+                   "selection": "best_match_bounded_pages", "max_pages": max_pages,
+                   "returned_pages_complete": not incomplete and fetched == total})
+    return list(hits.values()), ledger
+
+
 def search_partitioned(client, query: str, *, low: int = 0, high: int = 384_000):
     """Return hits and a per-leaf coverage ledger; never claim index exhaustiveness."""
     pending = [(low, high)]
