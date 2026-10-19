@@ -1,0 +1,13 @@
+# Hand-verified public adopters: workflow path confirmed to invoke a catalogued agent action.
+# Source: grep.app queries for `uses: <action>` / workflow-specific inputs, Oct 18 2026.
+# NOT a census; a small illustrative sample. Fork/archived status not excluded.
+dreamhunter2333/cloudflare_temp_email
+actiontech/sqle
+AOT-Technologies/forms-flow-ai
+a5chin/python-uv
+klodr/mercury-invoicing-mcp
+1600822305/AetherLink
+kaitranntt/ccs
+astral-sh/uv
+openclaw/openclaw
+openai/codex
