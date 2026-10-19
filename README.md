@@ -1,102 +1,68 @@
 # Agents With Keys
 
-Research software for **Agents With Keys: AI Coding Agents, Credentials, and State in CI Pipelines**.
+Research software for **Agents With Keys: Measuring and Constraining Authority in AI-Enabled CI**, by Osita Sean Keluo-Udeke.
 
-Author: Osita Sean Keluo-Udeke.
+Version 0.1.0 includes bounded workflow scanning, read-only collection, aggregation, independent-review utilities, closed-schema proposal validation, and recorded-trial evidence checks. It does not implement a complete credential gateway, effect service, live model adapter, or prompt-injection defense.
 
-This repository contains a working configuration scanner, a read-only GitHub mining pipeline, aggregate reporting, independent-review tools, a closed-schema proposal validator, and an evidence-checking harness for recorded agent trials.
+The October 19, 2026 collection selected 300 repositories from 410 index-discovered names and observed 462 agent jobs in 267 repositories, including 48 configuration review candidates. Seven snapshots failed; four were partial because 13 workflow files were rejected. These are descriptive indicators, not confirmed vulnerabilities or population prevalence. Independent labels, recall assessment, and live-agent security evaluation remain outstanding.
 
-**Research status:** implementation and component checks. The public-repository study, independent manual validation, and live-agent attack evaluation have not been completed. No fixture result is a finding for the paper.
+## Install and reproduce components
 
-## Start locally
+Requires Python 3.11+. The recorded local run used Python 3.12.14 and PyYAML 6.0.3.
 
-Requires Python 3.11 or newer.
+```bash
+python -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m pip install -e .
+python -m unittest discover -s tests -v
+python scripts/component_study.py --repository . --output runs/components-new
+python scripts/source_inventory.py --check
+```
 
-    python -m venv .venv
-    . .venv/bin/activate
-    python -m pip install -r requirements.txt
-    python -m pip install -e .
-    python -m unittest discover -s tests -v
-    awkeys --help
+Without an editable installation, prefix Python commands with `PYTHONPATH=src` on Unix-like systems. The six test modules contain 90 checks. The component script runs them and reproduces ten boundary cases, replay and semantic-limit probes, three unordered allowed-label sets, scanner illustrations, and a rejected/accepted worked proposal. Receipts do not authorize execution. Use a new output directory for retained runs.
 
-On Windows, activate with .venv\Scripts\activate. Alternatively, without an editable installation, use PYTHONPATH=src python -m awkeys on Unix-like systems.
+## Collect a new sample
 
-Scan a local repository without executing its code:
+Provide a GitHub token through `AWKEYS_GITHUB_TOKEN` or `GITHUB_TOKEN` in the local environment, never a tracked file or command-line argument. The packaged client makes authenticated GET requests only.
 
-    awkeys scan /path/to/repository --output runs/local/observations.jsonl
-    awkeys summarize runs/local/observations.jsonl --output runs/local/summary.json
-    awkeys boundary-checks --output runs/component-checks.json
+```bash
+awkeys collect --search-pages-per-query 1 --max-repositories 300 --max-requests 6000 --output private/new-collection
+awkeys summarize private/new-collection/observations.jsonl --manifest private/new-collection/manifest.private.json --output private/new-summary.json
+python scripts/analyze_deployment.py private/new-collection --output private/new-analysis.json
+```
 
-The summary reports jobs and repositories with separate denominators. Unknown configurations remain unknown. Missing engine markers on an incomplete tree do not become a non-game classification.
+`mine` remains an alias; `python mine.py` is compatible. Omitting `--search-pages-per-query` uses size-partitioned discovery. REST search uses legacy syntax: public filtering is enforced on returned hits and metadata, rather than the unsupported `is:public` qualifier.
 
-## Collect public workflow snapshots
+The bounded command intentionally cannot claim complete discovery. Exit status 2 preserves capped or incomplete runs; inspect the manifest. `selected_snapshots_complete` describes selected snapshots separately from search completeness. Failed or rejected files have unknown job counts. Collected project code is never executed.
 
-Make a GitHub token available as AWKEYS_GITHUB_TOKEN or GITHUB_TOKEN through your local credential environment. Do not put credentials in configuration files, commit them, or pass them as command-line arguments. The collector uses authenticated GET requests only.
+## Recompute the reported collection
 
-    awkeys mine --output runs/pilot-20261018 --max-repositories 25 --max-requests 300
+`evidence/deployment-analysis.json` contains all-available counts, a fully analyzed sensitivity subset, collection flow, and commitments to private observations, manifest, and request ledger. `evidence/collection-freeze.json` records initial source digests and the error-handling amendment made during acquisition. The selection plan is `docs/deployment-run-2026-10-19.md`.
 
-The compatible manuscript entry point is:
+The reported acquisition used the authenticated connected GitHub read API to retain responses, then replayed them through the collector. Metadata were projected to required fields; decoded blobs were encoded for replay and checked against Git object IDs. Replay is not a second sample. Capture was 16:32-16:51 UTC on October 19, 2026. A fresh online search produces a new sample.
 
-    python mine.py --output runs/pilot-20261018 --max-repositories 25 --max-requests 300
+Exact recomputation requires the separately controlled snapshot/response bundle from the author:
 
-For a fixed repository list, put one owner/repository per line in a local text file:
+```bash
+awkeys collect --response-cache /path/to/discovery-cache --search-pages-per-query 1 --max-repositories 300 --max-requests 6000 --output private/recomputed
+python scripts/analyze_deployment.py private/recomputed --output private/recomputed-analysis.json
+```
 
-    awkeys mine --repositories private/repositories.txt --output runs/fixed-sample --max-repositories 100
-    awkeys summarize runs/fixed-sample/observations.jsonl --manifest runs/fixed-sample/manifest.private.json --output runs/fixed-sample/aggregate.json
+Compare aggregate counts and workflow digests. Per-run identifiers and replay timestamps differ. Public commitments identify the original files, not a claim that later manifests are byte-identical. Identities, workflow source, salts, and logs are not released in Git.
 
-Every run requires a new empty output directory. Request and repository budgets are explicit. An interrupted, capped, malformed, or truncated collection exits with status 2 and preserves its partial artifacts. It must not be described as a complete census.
+## Independent review and runtime evidence
 
-The default discovery catalog searches action invocations. Direct CLI invocations are additionally recognized in the collected repositories. CLI-only repositories outside this discovery frame, hosted bots without workflows, private projects, forks, and archived repositories are outside the default eligible sample.
+```bash
+awkeys validation-sample private/recomputed/observations.jsonl --count 100 --seed 20261019 --output private/blank-review.csv
+awkeys agreement private/reviewer-a.csv private/reviewer-b.csv --output private/agreement.json
+awkeys evaluate private/trials.jsonl --evidence-root private/evidence --output private/trial-summary.json
+```
 
-## Independent configuration review
+Two human reviewers must label independently before adjudication. Tools do not supply judgments. Runtime evidence requires actual execution and independent outcome oracles. The optional Docker component harness in `evaluation/README.md` was not executed in the preparation environment.
 
-    awkeys validation-sample runs/fixed-sample/observations.jsonl --count 100 --seed 20261018 --output private/review-sample.csv
-    awkeys agreement private/reviewer-a.csv private/reviewer-b.csv --output private/agreement.json
+## Release and manuscript
 
-Give two reviewers separate copies of the blank sample and the private snapshot lookup. They label independently before adjudication. The software calculates agreement; it does not create reviewer judgments. See docs/review-codebook.md.
+The release is `v0.1.0`. `source_inventory.txt` hashes every other tracked regular file, excluding itself. After merging to `main`, regenerate and commit the inventory, then read `git rev-parse HEAD` for the manuscript pin. The manuscript build accepts that final commit as an external argument, avoiding a self-referential commit hash inside a committed file.
 
-## Evaluation
-
-The included output validator accepts only bounded label proposals bound to a trusted repository, issue, run, and source revision. It does not apply GitHub changes or establish a complete agent sandbox.
-
-The default component checks use in-memory fixtures:
-
-    awkeys boundary-checks --output runs/boundary-checks.json
-
-An optional Docker harness mounts only the validator code, uses an immutable local Python image, and disables network access. Read evaluation/README.md before running it.
-
-Real-agent trial records require hashed execution logs, a separate outcome oracle, the frozen protocol, task corpus, and tested configuration:
-
-    awkeys evaluate private/trials.jsonl --evidence-root private/evidence --output runs/evaluation-summary.json
-
-The evaluator rejects fixture records, missing or changed evidence, unpaired duplicates, mixed implementation revisions, and errors reported as successful defenses. No model adapter or live-agent outcome is silently substituted for a missing experiment.
-
-## Repository contents
-
-| Location | Purpose |
-| --- | --- |
-| src/awkeys/scanner.py | Safe YAML parsing and configuration indicators |
-| src/awkeys/catalog.json | Reviewed seed action catalog and heuristic CLI rules |
-| src/awkeys/github.py | Authenticated read-only requests and search-cap ledger |
-| src/awkeys/mining.py | Public default-branch snapshots, exclusions, raw provenance |
-| src/awkeys/reporting.py | Aggregate counts, review sampling, agreement |
-| src/awkeys/broker.py | Closed-schema example output validation |
-| src/awkeys/evaluation.py | Recorded-trial evidence checks and paired summaries |
-| scripts/run_boundary_container.py | Offline Docker component harness |
-| docs/ | Protocol, limitations, codebook, profile, provenance, release gates |
-| examples/ | Inert configuration examples; never used as research findings |
-| paper/ | Original supplied draft and its evidence requirements |
-| tests/ | Offline unit and integration tests |
-
-## Interpretation limits
-
-- Configuration references do not establish that a credential was available at runtime.
-- An inherited token default is unknown unless independently verified.
-- A read-only repository token does not establish that network egress is blocked.
-- Model credentials remain credentials.
-- A self-hosted label does not establish that a runner is persistent.
-- A full commit pin limits reference movement. It does not establish that action code is safe.
-- Stage separation still requires validation of untrusted outputs and exact target binding.
-- Neither this scanner nor its component tests proves that a model resists prompt injection.
-
-The evidence and assumptions that must change in the manuscript are mapped in docs/manuscript-evidence-map.md. See docs/research-protocol.md before collecting publication data.
+See `paper/README.md` for the manuscript and figure build. Historical drafts are preserved separately and are not evidence for current findings. `VALIDATION.md` states verification scope. `.zenodo.json` prepares deposit metadata; no DOI is claimed until publication.
