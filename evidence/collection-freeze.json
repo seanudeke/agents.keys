@@ -1,0 +1,27 @@
+{
+  "frozen_at": "2026-10-19T16:32:11.527580+00:00",
+  "base_branch_commit": "5abf17b7e7832111dfc91fe95586095a7594226b",
+  "source_sha256": {
+    "src/awkeys/scanner.py": "4fc200dc29f42f1ac687e43a556b0be1382fa5a2ca95c74122b7b0483d327632",
+    "src/awkeys/catalog.json": "dd07553391940bae9f6d63fbaba5f93801fedff380f261383a9b71cacf0b248f",
+    "src/awkeys/mining.py": "6b21e834c5360a0f0b4f6fc87b9bd14fdcbc3ce76b5857de666deacca9053234",
+    "src/awkeys/github.py": "4b60eef101c7eb1864adb52412dc13b9edd211ea4c33d1e8aa79ac07ac64ae25",
+    "src/awkeys/cache.py": "dd2aea9c978c3026f30015d379766fc915b46dcaa96cdf43024fe213e2be2fef",
+    "src/awkeys/reporting.py": "88c53f8352186bd570e06b81c2b2567bf3c09c0f325f3bff6b377b726aa970c6",
+    "docs/deployment-run-2026-10-19.md": "69fd86467b4ee3b7690dd59eaa4b61b831d952d11cbe0dbf4f326c017316f977"
+  },
+  "registered_study": false,
+  "max_repositories": 300,
+  "search_pages_per_query": 1,
+  "max_requests": 6000,
+  "amendments": [
+    {
+      "at": "2026-10-19T16:43:35.998097+00:00",
+      "before_scanner_analysis": true,
+      "reason": "A failed workflow blob must mark a partial snapshot and allow collection of other available workflow blobs. Observed retrieval failures prompted this error-handling correction during acquisition; the scanner, catalog, selection and analysis definitions are unchanged.",
+      "source_sha256": {
+        "src/awkeys/mining.py": "4767e6a4aeb36be0d428b562855a648537617a8d2a8e08572619cc74f48152d3"
+      }
+    }
+  ]
+}

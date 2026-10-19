@@ -1,0 +1,760 @@
+{
+  "all_available": {
+    "all": {
+      "a_input_indicator": {
+        "present": 67,
+        "unknown": 395
+      },
+      "agent_jobs": 462,
+      "agents_jobs": {
+        "claude-code": 134,
+        "codex": 69,
+        "codex-cli": 1,
+        "gemini-cli": 124,
+        "qodo-pr-agent": 141
+      },
+      "b_sensitive_indicator": {
+        "present": 459,
+        "unknown": 3
+      },
+      "c_declared_repository_write": {
+        "absent": 114,
+        "present": 341,
+        "unknown": 7
+      },
+      "inherited_or_unknown_token_jobs": {
+        "count": 7,
+        "denominator": 462,
+        "percent": 1.5151515151515151
+      },
+      "referenced_model_secret_jobs": {
+        "count": 421,
+        "denominator": 462,
+        "percent": 91.12554112554112
+      },
+      "referenced_non_model_secret_jobs": {
+        "count": 339,
+        "denominator": 462,
+        "percent": 73.37662337662337
+      },
+      "repositories_with_agent_jobs": 267,
+      "repositories_with_triple_indicator": {
+        "count": 26,
+        "denominator": 267,
+        "percent": 9.737827715355806
+      },
+      "secret_categories_jobs": {
+        "cloud": 1,
+        "model": 421,
+        "other_or_ambiguous": 159,
+        "registry_or_repository": 285
+      },
+      "self_hosted_label_jobs": {
+        "count": 2,
+        "denominator": 462,
+        "percent": 0.4329004329004329
+      },
+      "triple_indicator_jobs": {
+        "count": 48,
+        "denominator": 462,
+        "percent": 10.38961038961039
+      },
+      "unpinned_direct_remote_action_uses": {
+        "count": 623,
+        "denominator": 1186,
+        "percent": 52.529510961214164
+      }
+    },
+    "collection": {
+      "collection_mode": "action_catalog_search",
+      "discovered_repository_count": 410,
+      "error_count": 20,
+      "finished_at": "2026-10-19T16:52:02.438570+00:00",
+      "index_population_exhaustive": false,
+      "repository_budget_truncated": true,
+      "repository_status_counts": {
+        "analyzed": 289,
+        "error": 7,
+        "partial": 4
+      },
+      "request_count": 3819,
+      "search_returned_pages_complete": false,
+      "snapshot_analysis_complete": false,
+      "started_at": "2026-10-19T16:51:33.191013+00:00"
+    },
+    "engine_classification_unknown": {
+      "a_input_indicator": {},
+      "agent_jobs": 0,
+      "agents_jobs": {},
+      "b_sensitive_indicator": {},
+      "c_declared_repository_write": {},
+      "inherited_or_unknown_token_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "referenced_model_secret_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "referenced_non_model_secret_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "repositories_with_agent_jobs": 0,
+      "repositories_with_triple_indicator": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "secret_categories_jobs": {},
+      "self_hosted_label_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "triple_indicator_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "unpinned_direct_remote_action_uses": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      }
+    },
+    "game_markers_present": {
+      "a_input_indicator": {},
+      "agent_jobs": 0,
+      "agents_jobs": {},
+      "b_sensitive_indicator": {},
+      "c_declared_repository_write": {},
+      "inherited_or_unknown_token_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "referenced_model_secret_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "referenced_non_model_secret_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "repositories_with_agent_jobs": 0,
+      "repositories_with_triple_indicator": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "secret_categories_jobs": {},
+      "self_hosted_label_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "triple_indicator_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "unpinned_direct_remote_action_uses": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      }
+    },
+    "interpretation": "Nonprobability index or explicit-list sample. Indicators are not confirmed vulnerabilities.",
+    "no_engine_marker_complete_tree": {
+      "a_input_indicator": {
+        "present": 67,
+        "unknown": 395
+      },
+      "agent_jobs": 462,
+      "agents_jobs": {
+        "claude-code": 134,
+        "codex": 69,
+        "codex-cli": 1,
+        "gemini-cli": 124,
+        "qodo-pr-agent": 141
+      },
+      "b_sensitive_indicator": {
+        "present": 459,
+        "unknown": 3
+      },
+      "c_declared_repository_write": {
+        "absent": 114,
+        "present": 341,
+        "unknown": 7
+      },
+      "inherited_or_unknown_token_jobs": {
+        "count": 7,
+        "denominator": 462,
+        "percent": 1.5151515151515151
+      },
+      "referenced_model_secret_jobs": {
+        "count": 421,
+        "denominator": 462,
+        "percent": 91.12554112554112
+      },
+      "referenced_non_model_secret_jobs": {
+        "count": 339,
+        "denominator": 462,
+        "percent": 73.37662337662337
+      },
+      "repositories_with_agent_jobs": 267,
+      "repositories_with_triple_indicator": {
+        "count": 26,
+        "denominator": 267,
+        "percent": 9.737827715355806
+      },
+      "secret_categories_jobs": {
+        "cloud": 1,
+        "model": 421,
+        "other_or_ambiguous": 159,
+        "registry_or_repository": 285
+      },
+      "self_hosted_label_jobs": {
+        "count": 2,
+        "denominator": 462,
+        "percent": 0.4329004329004329
+      },
+      "triple_indicator_jobs": {
+        "count": 48,
+        "denominator": 462,
+        "percent": 10.38961038961039
+      },
+      "unpinned_direct_remote_action_uses": {
+        "count": 623,
+        "denominator": 1186,
+        "percent": 52.529510961214164
+      }
+    },
+    "per_engine": {
+      "godot": {
+        "a_input_indicator": {},
+        "agent_jobs": 0,
+        "agents_jobs": {},
+        "b_sensitive_indicator": {},
+        "c_declared_repository_write": {},
+        "inherited_or_unknown_token_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_non_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "repositories_with_agent_jobs": 0,
+        "repositories_with_triple_indicator": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "secret_categories_jobs": {},
+        "self_hosted_label_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "triple_indicator_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "unpinned_direct_remote_action_uses": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "unity": {
+        "a_input_indicator": {},
+        "agent_jobs": 0,
+        "agents_jobs": {},
+        "b_sensitive_indicator": {},
+        "c_declared_repository_write": {},
+        "inherited_or_unknown_token_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_non_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "repositories_with_agent_jobs": 0,
+        "repositories_with_triple_indicator": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "secret_categories_jobs": {},
+        "self_hosted_label_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "triple_indicator_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "unpinned_direct_remote_action_uses": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "unreal": {
+        "a_input_indicator": {},
+        "agent_jobs": 0,
+        "agents_jobs": {},
+        "b_sensitive_indicator": {},
+        "c_declared_repository_write": {},
+        "inherited_or_unknown_token_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_non_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "repositories_with_agent_jobs": 0,
+        "repositories_with_triple_indicator": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "secret_categories_jobs": {},
+        "self_hosted_label_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "triple_indicator_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "unpinned_direct_remote_action_uses": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      }
+    },
+    "population_prevalence_confidence_interval": null,
+    "report_kind": "descriptive_configuration_summary",
+    "schema_version": 1
+  },
+  "commitments": {
+    "manifest.private.json": "b362b65189c71215c48e73cfbea4c2d11c78ea891cb01670f30a8a8e1d9cb01b",
+    "observations.jsonl": "91d04620e0d9b0c8b65dbacc34bfcf3d563e793b0239f079b6b09d59419a9f97",
+    "requests.private.json": "5f9370652e44bbbc2bee5dc0be56dc455e683f8fd78155ac9485a1a077690d8f"
+  },
+  "complete_snapshot_sensitivity": {
+    "all": {
+      "a_input_indicator": {
+        "present": 64,
+        "unknown": 388
+      },
+      "agent_jobs": 452,
+      "agents_jobs": {
+        "claude-code": 127,
+        "codex": 69,
+        "codex-cli": 1,
+        "gemini-cli": 122,
+        "qodo-pr-agent": 140
+      },
+      "b_sensitive_indicator": {
+        "present": 449,
+        "unknown": 3
+      },
+      "c_declared_repository_write": {
+        "absent": 111,
+        "present": 334,
+        "unknown": 7
+      },
+      "inherited_or_unknown_token_jobs": {
+        "count": 7,
+        "denominator": 452,
+        "percent": 1.5486725663716814
+      },
+      "referenced_model_secret_jobs": {
+        "count": 411,
+        "denominator": 452,
+        "percent": 90.929203539823
+      },
+      "referenced_non_model_secret_jobs": {
+        "count": 331,
+        "denominator": 452,
+        "percent": 73.23008849557522
+      },
+      "repositories_with_agent_jobs": 263,
+      "repositories_with_triple_indicator": {
+        "count": 25,
+        "denominator": 263,
+        "percent": 9.505703422053232
+      },
+      "secret_categories_jobs": {
+        "cloud": 1,
+        "model": 411,
+        "other_or_ambiguous": 154,
+        "registry_or_repository": 282
+      },
+      "self_hosted_label_jobs": {
+        "count": 2,
+        "denominator": 452,
+        "percent": 0.4424778761061947
+      },
+      "triple_indicator_jobs": {
+        "count": 46,
+        "denominator": 452,
+        "percent": 10.176991150442477
+      },
+      "unpinned_direct_remote_action_uses": {
+        "count": 599,
+        "denominator": 1162,
+        "percent": 51.54905335628227
+      }
+    },
+    "engine_classification_unknown": {
+      "a_input_indicator": {},
+      "agent_jobs": 0,
+      "agents_jobs": {},
+      "b_sensitive_indicator": {},
+      "c_declared_repository_write": {},
+      "inherited_or_unknown_token_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "referenced_model_secret_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "referenced_non_model_secret_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "repositories_with_agent_jobs": 0,
+      "repositories_with_triple_indicator": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "secret_categories_jobs": {},
+      "self_hosted_label_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "triple_indicator_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "unpinned_direct_remote_action_uses": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      }
+    },
+    "game_markers_present": {
+      "a_input_indicator": {},
+      "agent_jobs": 0,
+      "agents_jobs": {},
+      "b_sensitive_indicator": {},
+      "c_declared_repository_write": {},
+      "inherited_or_unknown_token_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "referenced_model_secret_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "referenced_non_model_secret_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "repositories_with_agent_jobs": 0,
+      "repositories_with_triple_indicator": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "secret_categories_jobs": {},
+      "self_hosted_label_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "triple_indicator_jobs": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      },
+      "unpinned_direct_remote_action_uses": {
+        "count": 0,
+        "denominator": 0,
+        "percent": null
+      }
+    },
+    "interpretation": "Nonprobability index or explicit-list sample. Indicators are not confirmed vulnerabilities.",
+    "no_engine_marker_complete_tree": {
+      "a_input_indicator": {
+        "present": 64,
+        "unknown": 388
+      },
+      "agent_jobs": 452,
+      "agents_jobs": {
+        "claude-code": 127,
+        "codex": 69,
+        "codex-cli": 1,
+        "gemini-cli": 122,
+        "qodo-pr-agent": 140
+      },
+      "b_sensitive_indicator": {
+        "present": 449,
+        "unknown": 3
+      },
+      "c_declared_repository_write": {
+        "absent": 111,
+        "present": 334,
+        "unknown": 7
+      },
+      "inherited_or_unknown_token_jobs": {
+        "count": 7,
+        "denominator": 452,
+        "percent": 1.5486725663716814
+      },
+      "referenced_model_secret_jobs": {
+        "count": 411,
+        "denominator": 452,
+        "percent": 90.929203539823
+      },
+      "referenced_non_model_secret_jobs": {
+        "count": 331,
+        "denominator": 452,
+        "percent": 73.23008849557522
+      },
+      "repositories_with_agent_jobs": 263,
+      "repositories_with_triple_indicator": {
+        "count": 25,
+        "denominator": 263,
+        "percent": 9.505703422053232
+      },
+      "secret_categories_jobs": {
+        "cloud": 1,
+        "model": 411,
+        "other_or_ambiguous": 154,
+        "registry_or_repository": 282
+      },
+      "self_hosted_label_jobs": {
+        "count": 2,
+        "denominator": 452,
+        "percent": 0.4424778761061947
+      },
+      "triple_indicator_jobs": {
+        "count": 46,
+        "denominator": 452,
+        "percent": 10.176991150442477
+      },
+      "unpinned_direct_remote_action_uses": {
+        "count": 599,
+        "denominator": 1162,
+        "percent": 51.54905335628227
+      }
+    },
+    "per_engine": {
+      "godot": {
+        "a_input_indicator": {},
+        "agent_jobs": 0,
+        "agents_jobs": {},
+        "b_sensitive_indicator": {},
+        "c_declared_repository_write": {},
+        "inherited_or_unknown_token_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_non_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "repositories_with_agent_jobs": 0,
+        "repositories_with_triple_indicator": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "secret_categories_jobs": {},
+        "self_hosted_label_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "triple_indicator_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "unpinned_direct_remote_action_uses": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "unity": {
+        "a_input_indicator": {},
+        "agent_jobs": 0,
+        "agents_jobs": {},
+        "b_sensitive_indicator": {},
+        "c_declared_repository_write": {},
+        "inherited_or_unknown_token_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_non_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "repositories_with_agent_jobs": 0,
+        "repositories_with_triple_indicator": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "secret_categories_jobs": {},
+        "self_hosted_label_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "triple_indicator_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "unpinned_direct_remote_action_uses": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      },
+      "unreal": {
+        "a_input_indicator": {},
+        "agent_jobs": 0,
+        "agents_jobs": {},
+        "b_sensitive_indicator": {},
+        "c_declared_repository_write": {},
+        "inherited_or_unknown_token_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "referenced_non_model_secret_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "repositories_with_agent_jobs": 0,
+        "repositories_with_triple_indicator": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "secret_categories_jobs": {},
+        "self_hosted_label_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "triple_indicator_jobs": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        },
+        "unpinned_direct_remote_action_uses": {
+          "count": 0,
+          "denominator": 0,
+          "percent": null
+        }
+      }
+    },
+    "population_prevalence_confidence_interval": null,
+    "report_kind": "descriptive_configuration_summary",
+    "schema_version": 1
+  },
+  "flow": {
+    "attempted": 300,
+    "discovered": 410,
+    "errors_by_stage": {
+      "snapshot": 7,
+      "workflow_parse": 13
+    },
+    "observations_by_snapshot_status": {
+      "analyzed": 452,
+      "partial": 10
+    },
+    "statuses": {
+      "analyzed": 289,
+      "error": 7,
+      "partial": 4
+    },
+    "workflow_files_enumerated": 2915,
+    "workflow_files_read": 2915
+  },
+  "interpretation": "All-available observations include partial snapshots; the complete-snapshot subset is a sensitivity description. Neither is a probability sample, a prevalence estimate, or an independent classification validation."
+}
