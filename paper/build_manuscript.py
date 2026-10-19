@@ -107,7 +107,13 @@ def make_docx(blocks):
             if level==1:
                 p=doc.add_paragraph(title,style='Title');p.alignment=WD_ALIGN_PARAGRAPH.CENTER
             else:
-                p=doc.add_paragraph(title,style='Heading 1' if level==2 else 'Heading 2')
+                display_title=title
+                match=re.match(r'^(\d+)(?:\.(\d+))?\s+(.*)',title)
+                if match:
+                    roman={1:'I',2:'II',3:'III',4:'IV',5:'V',6:'VI',7:'VII',8:'VIII',9:'IX'}
+                    prefix=(chr(64+int(match[2]))+'.' if match[2] else roman[int(match[1])]+'.')
+                    display_title=prefix+' '+match[3]
+                p=doc.add_paragraph(display_title,style='Heading 1' if level==2 else 'Heading 2')
                 refs=title=='References';abstract=title=='Abstract'
         elif b[0]=='paragraph':
             text=b[1]
